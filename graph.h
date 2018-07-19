@@ -17,8 +17,8 @@ public:
     explicit Graph(qint64 v);
 
     void add(Node node);
-    void remove(int i);
-    Node* get();
+    void remove(qint64 i);
+    Node* get(qint64 i);
 
 private:
     // Number of vertices
