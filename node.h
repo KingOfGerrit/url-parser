@@ -28,4 +28,6 @@ private:
     QLinkedList<qint64> m_adj;
 };
 
+#include "node.cpp"
+
 #endif // NODE_H

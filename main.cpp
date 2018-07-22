@@ -1,25 +1,43 @@
 #include "mainwindow.h"
 #include <QApplication>
+#include <QRunnable>
+#include <QThreadPool>
 
 #include "graph.h"
 
+class HelloWorldTask : public QRunnable
+{
+    void run()
+    {
+        qDebug() << "Hello world from thread" << QThread::currentThread();
+    }
+};
+
 int main(int argc, char *argv[])
 {
-    Graph<QString> g;
+    HelloWorldTask *hello = new HelloWorldTask();
+    HelloWorldTask *hello1 = new HelloWorldTask();
 
-    g.add("0");
-    g.add("1");
-    g.add("2");
-    g.add("3");
+    // QThreadPool takes ownership and deletes 'hello' automatically
+    QThreadPool::globalInstance()->start(hello);
+    QThreadPool::globalInstance()->start(hello1);
+    qDebug() << "Main Thread" << QThread::currentThread();
 
-    g.addEdge(0, 1);
-    g.addEdge(0, 2);
-    g.addEdge(1, 2);
-    g.addEdge(2, 0);
-    g.addEdge(2, 3);
-    g.addEdge(3, 3);
+//    Graph<QString> g;
 
-    g.bfs(2);
+//    g.add("0");
+//    g.add("1");
+//    g.add("2");
+//    g.add("3");
+
+//    g.addEdge(0, 1);
+//    g.addEdge(0, 2);
+//    g.addEdge(1, 2);
+//    g.addEdge(2, 0);
+//    g.addEdge(2, 3);
+//    g.addEdge(3, 3);
+
+//    g.bfs(2);
 
     QApplication a(argc, argv);
     MainWindow w;

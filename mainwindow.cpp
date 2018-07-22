@@ -28,7 +28,7 @@ void MainWindow::on_pushButton_clicked()
 
     int j = 0;
 
-    QString subStr = ui->findWordLineEdit->text();
+    QString subStr = ui->searchTextLineEdit->text();
     while ((j = html.indexOf(subStr, j)) != -1) {
         qDebug() << "Found " + subStr + " tag at index position" << j;
         qDebug() << html.mid(j - 5, subStr.length() + 10);

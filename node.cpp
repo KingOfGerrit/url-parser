@@ -1,3 +1,6 @@
+#ifndef NODE_CPP
+#define NODE_CPP
+
 #include "node.h"
 
 template<typename T>
@@ -41,3 +44,5 @@ QLinkedList<qint64>::iterator Node<T>::getEnd()
 {
     return m_adj.end();
 }
+
+#endif // NODE_CPP
