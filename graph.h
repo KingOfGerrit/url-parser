@@ -10,21 +10,22 @@ template<typename T>
 class Graph
 {
 public:
-    Graph() :
-        m_v(0)
-    {}
+    Graph();
 
     void add    (const T &data);
     void addEdge(const qint64 &v, const qint64 &w);
     void remove (const qint64 &i);
     void remove (const T &data);
+    void clear  ();
 
     qint64 find (const T &data);
 
-    Node<T> get    (const qint64 &i);
-    Node<T> get    (const T &data);
+    Node<T> get (const qint64 &i);
+    Node<T> get (const T &data);
 
-    void bfs(const qint64 &startIndex);
+    void bfs    (const qint64 &startIndex);
+
+    ~Graph();
 
 private:
     // Number of vertices

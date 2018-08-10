@@ -4,6 +4,14 @@
 #include "node.h"
 
 template<typename T>
+Node<T>::Node(qint64 number, T data) :
+    m_number(number),
+    m_data(data)
+{
+
+}
+
+template<typename T>
 void Node<T>::addToList(const qint64 &numberOfNode)
 {
     m_adj.append(numberOfNode);
@@ -19,6 +27,13 @@ template<typename T>
 bool Node<T>::existInList(const qint64 &numberOfNode) const
 {
     return m_adj.contains(numberOfNode);
+}
+
+template<typename T>
+void Node::clean()
+{
+    m_number = 0;
+    m_adj.clear();
 }
 
 template<typename T>
@@ -43,6 +58,12 @@ template<typename T>
 QLinkedList<qint64>::iterator Node<T>::getEnd()
 {
     return m_adj.end();
+}
+
+template<typename T>
+Node::~Node()
+{
+    clea();
 }
 
 #endif // NODE_CPP

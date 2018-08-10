@@ -7,17 +7,15 @@ template<typename T>
 class Node
 {
 public:
-    Node(qint64 number, T data) :
-        m_number(number),
-        m_data(data)
-    {}
+    Node(qint64 number, T data);
 
     void addToList     (const qint64 &numberOfNode);
     void removeFromList(const qint64 &numberOfNode);
     bool existInList   (const qint64 &numberOfNode) const;
+    void clean         ();
 
-    qint64  number() const;
-    T       getData() const;
+    qint64 number () const;
+    T      getData() const;
 
     QLinkedList<qint64>::iterator getBegin();
     QLinkedList<qint64>::iterator getEnd();

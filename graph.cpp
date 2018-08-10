@@ -4,6 +4,13 @@
 #include "graph.h"
 
 template<typename T>
+Graph<T>::Graph() :
+    m_v(0)
+{
+
+}
+
+template<typename T>
 void Graph<T>::add(const T &data)
 {
     m_graph.append(Node<T>(m_v++, data));
@@ -38,6 +45,13 @@ void Graph<T>::remove(const T &data)
     {
         n.removeFromList(i);
     }
+}
+
+template<typename T>
+void Graph<T>::clear()
+{
+    m_v = 0;
+    m_graph.clear();
 }
 
 template<typename T>
@@ -114,6 +128,12 @@ void Graph<T>::bfs(const qint64 &startIndex)
             }
         }
     }
+}
+
+template<typename T>
+Graph::~Graph()
+{
+    clear();
 }
 
 #endif // GRAPH_CPP

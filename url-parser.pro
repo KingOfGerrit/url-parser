@@ -30,12 +30,18 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     graph.cpp \
-    node.cpp
+    node.cpp \
+    controller.cpp \
+    worker.cpp \
+    asyncqueue.cpp
 
 HEADERS += \
         mainwindow.h \
     graph.h \
-    node.h
+    node.h \
+    controller.h \
+    worker.h \
+    asyncqueue.h
 
 FORMS += \
         mainwindow.ui
