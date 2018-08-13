@@ -33,17 +33,25 @@ void Worker::setRunning(bool running)
 QList<QString> Worker::searchTextBySubstring(QString text, QString find)
 {
     QList<QString> foundElements;
-    int pos = 0;
+    QStringList lines = text.split("\\n");
 
-    while ((pos = text.indexOf(find, pos)) != -1)
+    for (int i = 0; i < fonts.size(); ++i)
     {
-        QString foundText = "..." % text.mid(pos - 5, find.length() + 10) % "...";
-        qDebug() << "Found " + find + " tag at index position" << pos;
-        qDebug() << foundText;
+        QString line = lines[i];
+        int pos = 0;
 
-        foundElements.append(foundText);
+        while ((pos = line.indexOf(find, pos)) != -1)
+        {
+            QString foundText =
+                    "Found text on line " % (i + 1) % ", position " % (pos + 1) % ":"
+                    "..." % line.mid(pos - 5, find.length() + 10) % "...";
 
-        ++pos;
+            qDebug() << foundText;
+
+            foundElements.append(foundText);
+
+            ++pos;
+        }
     }
 
     return foundElements;
@@ -68,7 +76,7 @@ QList<QString> Worker::searchTextByRegExp(QString text, QRegExp rx)
 void Worker::parseHtml(QUrl url)
 {
     QString html = "";
-    NetErr  error = getHtml(url, html);
+    NetErr  error = getHtml(url, html, QRegExp("[\\t\\r]"));
 
     // All ok
     if (error == QNetworkReply::NoError)
@@ -82,7 +90,7 @@ void Worker::parseHtml(QUrl url)
     }
 }
 
-NetErr Worker::getHtml(QUrl url, QString &html)
+NetErr Worker::getHtml(QUrl url, QString &html, QRegExp whatRemoveFromHtmlFile)
 {
     QTimer                timer;
     QNetworkAccessManager manager;
@@ -107,7 +115,7 @@ NetErr Worker::getHtml(QUrl url, QString &html)
         timer.stop();
 
         html = response->readAll();
-        html.remove(QRegExp("[\\n\\t\\r]"));
+        html.remove(whatRemoveFromHtmlFile);
     }
     // Error
     else

@@ -14,7 +14,9 @@ public:
 
     void customEnqueue(const T& t);
     T    customDequeue();
-    void customClean ();
+    void customClean  ();
+
+    ~AsyncQueue();
 
 private:
     QQueue<T> m_queue;

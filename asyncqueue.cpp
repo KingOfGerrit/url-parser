@@ -3,6 +3,7 @@
 
 #include "asyncqueue.h"
 
+template<typename T>
 AsyncQueue::AsyncQueue()
 {
 
@@ -11,7 +12,7 @@ AsyncQueue::AsyncQueue()
 template<typename T>
 AsyncQueue::~AsyncQueue()
 {
-
+    m_queue.clear();
 }
 
 #endif // ASYNCQUEUE_CPP

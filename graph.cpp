@@ -131,7 +131,7 @@ void Graph<T>::bfs(const qint64 &startIndex)
 }
 
 template<typename T>
-Graph::~Graph()
+Graph<T>::~Graph()
 {
     clear();
 }

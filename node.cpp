@@ -30,7 +30,7 @@ bool Node<T>::existInList(const qint64 &numberOfNode) const
 }
 
 template<typename T>
-void Node::clean()
+void Node<T>::clean()
 {
     m_number = 0;
     m_adj.clear();
@@ -61,9 +61,9 @@ QLinkedList<qint64>::iterator Node<T>::getEnd()
 }
 
 template<typename T>
-Node::~Node()
+Node<T>::~Node()
 {
-    clea();
+    clean();
 }
 
 #endif // NODE_CPP

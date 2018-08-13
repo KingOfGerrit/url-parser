@@ -20,6 +20,8 @@ public:
     QLinkedList<qint64>::iterator getBegin();
     QLinkedList<qint64>::iterator getEnd();
 
+    ~Node();
+
 private:
     qint64              m_number;
     T                   m_data;
